@@ -10,6 +10,14 @@ class Exec_queue:
         if len(self.queue)>0:
             task = self.queue.pop()
             return task
+    
+    def rev_enqueue(self, task):
+        self.queue = [task] + self.queue
+
+    def rev_dequeue(self, task):
+        if len(self.queue)>0:
+            task = self.queue.pop(0)
+            return task
 
     def roll(self, cur_cycle, cxt):
         if len(self.queue)>0:
