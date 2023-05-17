@@ -14,7 +14,6 @@ class Exec_queue:
     """
     def __init__(self):
         self.queue = []
-        self.throughput = 0
 
     def enqueue(self, task):
         """
@@ -47,7 +46,7 @@ class Exec_queue:
         if len(self.queue)>0:
             if self.queue[0].is_expired():
                 self.dequeue()
-                self.throughput+=1
+                cxt['Y_TASKS'] += 1
                 cxt['N_TASKS'] -= 1
             else:
                 self.queue = [self.queue[-1]]+self.queue[0:-1]

@@ -17,9 +17,9 @@ dflt_context = {
     #number of tasks running at start of the simulation
     "I_TASKS" : 0,
     #number of tasks to be created at span cycle
-    "S_TASKS" : 20,
+    "S_TASKS" : 5,
     #time before each task spanning
-    "S_PERIOD" : 250,
+    "S_PERIOD" : 20000,
     #period of the load balancing process
     "LB_PERIOD" : 1,
     #duration of the load balancing process
