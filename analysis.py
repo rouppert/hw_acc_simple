@@ -20,7 +20,7 @@ def use_graph(proc_usage, context, lb_on):
 def avg_throughput(queues, context):
     avg_thr = 0
     for queue in queues:
-        avg_thr+=queue.throughput/context['N_CORES']
+        avg_thr+=queue.throughput/(context['N_CORES']*context['T_TASKS'])
     return avg_thr
 
 def simulate(cxt, alg, LOAD_BALANCER_FLAG = False):
@@ -35,13 +35,14 @@ def simulate(cxt, alg, LOAD_BALANCER_FLAG = False):
             for i in range(new):
                 task = hw.Task(rd.randrange(cxt['MIN_LIFE'], cxt['MAX_LIFE']))
                 cxt['N_TASKS']+=1
+                cxt['T_TASKS']+=1
                 queues[core].enqueue(task)
                 core = (core + 1)%cxt['N_CORES']
 
         for i in range(len(queues)):
             if queues[i].len() == 0: proc_usage[i].append(0)
             else: proc_usage[i].append(1)
-            queues[i].roll(cur_cycle, cxt)
+            queues[i].roll(cxt)
         if LOAD_BALANCER_FLAG and (cur_cycle+1)%cxt['LB_PERIOD']: 
             alg(queues, cxt)
             for queue in proc_usage:

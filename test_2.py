@@ -14,10 +14,10 @@ dflt_context = {
     "N_TASKS" : 0,
     #number of processors
     "N_CORES" : 8, 
-    #number of tasks running at start of the simulation
-    "I_TASKS" : 0,
     #number of tasks to be created at span cycle
     "S_TASKS" : 5,
+    #total number of tasks who have been running since the start of the simulation
+    "T_TASKS" : 0,
     #time before each task spanning
     "S_PERIOD" : 500,
     #period of the load balancing process
@@ -36,7 +36,7 @@ dflt_context = {
 
 def main(argv):
     #-------- Parameters --------
-    it = 1000
+    it = 100
     alg1 = alg.simple_load_balancer
     alg2 = alg.simple_smart_lb
     #----------------------------

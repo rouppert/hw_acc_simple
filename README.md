@@ -11,6 +11,8 @@ An execution queue holds tasks, which are described by the class Task of the mod
 
 A simulation is a following of steps, each step representing an time slice, i.e the maximum time before a task must yield the core to another task. Tasks have a lifetime, which means that after a given number of slices during which they have been holding the core, they die. At a given frequency, new tasks are created, with a random lifetime. The purpose of the simulation is to compute the throughput of the processor, i.e the number of tasks who have been fully executed over the whole simulation time.
 
+Cache considerations will further be needed. A first model would be to add a random number of cache accesses for each task, and decide of a rather realistic value for the miss penaly.
+
 ## Execution model
 The execution of tasks is modelled through the roll() method of the Exec_queue class. At each execution step, this method is called on every execution queue of the processors. It pops the last task out of the queue, checks if its execution is finished, and, if not, reinserts it at the beginning of the queue.
 
@@ -24,3 +26,7 @@ One may ask the question of the interest of performing the load balancing at eac
 
 ## Possible improvements
 * implement various schedulers (for now, only round robin)
+* look for statistics on Linux number of processes, and lifetime of those
+* add caches considerations
+
+# Useful commands

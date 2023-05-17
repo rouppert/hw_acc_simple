@@ -25,7 +25,7 @@ def simple_smart_lb(queues, cxt):
     i=0
     while max_load-min_load>min(cxt['N_TASKS']%cxt['N_CORES'], 1):
         task = queues[max_id].rev_dequeue()
-        queues[min_id].rev_enqueue(task)
+        queues[min_id].enqueue(task)
         lqueues = [queue.len() for queue in queues]
         min_load = np.min(lqueues)
         min_id = np.argmin(lqueues)
